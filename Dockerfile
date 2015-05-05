@@ -31,8 +31,8 @@ RUN /usr/sbin/a2enmod headers && \
 # ports
 EXPOSE 80 443
 
-ENV SSL_CRT
-ENV SSL_KEY
+#ENV SSL_CRT
+#ENV SSL_KEY
 
 # start service
 CMD ["/usr/sbin/apache2ctl", "-D",  "FOREGROUND"]
