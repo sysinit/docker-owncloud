@@ -1,5 +1,5 @@
 #
-FROM debian:jessie
+FROM ubuntu:trusty
 MAINTAINER Frank Mueller "tmp@sysinit.de"
 
 # increase serial to run everything from here again
@@ -25,7 +25,7 @@ RUN apt-get install -y owncloud
 # enable apache modules
 RUN /usr/sbin/a2enmod headers && \
     /usr/sbin/a2enmod expires && \
-    /usr/sbin/a2enmod cache
+    /usr/sbin/a2enmod cache && \
     /usr/sbin/a2enmod ssl 
 
 # ports
