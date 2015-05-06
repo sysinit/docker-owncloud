@@ -11,22 +11,22 @@ RUN apt-get update && apt-get install -y \
 	vim
 
 # get owncloud repo key
-RUN wget -O - http://download.opensuse.org/repositories/isv:ownCloud:community/Debian_8.0/Release.key | apt-key add -
-#RUN wget -O - http://download.opensuse.org/repositories/isv:ownCloud:community/xUbuntu_14.04/Release.key | apt-key add -
+RUN wget -O - http://download.opensuse.org/repositories/isv:ownCloud:community/xUbuntu_14.04/Release.key | apt-key add -
 
 # add owncloud repo
-RUN echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/Debian_8.0/ /' >> /etc/apt/sources.list.d/owncloud.list
-#RUN echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/owncloud.list
+RUN echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/owncloud.list
 RUN apt-get update
 
 # install owncloud and dependencies
 RUN apt-get install -y owncloud
 
 # enable apache modules
-RUN /usr/sbin/a2enmod headers && \
-    /usr/sbin/a2enmod expires && \
-    /usr/sbin/a2enmod cache && \
-    /usr/sbin/a2enmod ssl 
+RUN /usr/sbin/a2enmod headers \
+    proxy \
+    proxy_http \
+    expires \
+    cache \
+    ssl 
 
 # ports
 EXPOSE 80 443
